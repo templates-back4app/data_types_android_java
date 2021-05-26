@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     private void readObjects() {
 
         if (objectId == null) {
-            Toast.makeText(this, "None objectId. Click  Save Data button before.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No objectId. Click  Save Data button before.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateObject() {
         if (objectId == null) {
-            Toast.makeText(this, "None objectId. Click  Save Data button before.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No objectId. Click  Save Data button before.", Toast.LENGTH_SHORT).show();
             return;
         }
 
