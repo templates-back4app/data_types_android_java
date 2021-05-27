@@ -1,34 +1,25 @@
 package com.emre.datatypesjava;
 
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
-import android.content.ClipData;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.parse.DeleteCallback;
-import com.parse.GetCallback;
-import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.SaveCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -67,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void saveDataTypes() throws JSONException {
         ParseObject parseObject = new ParseObject("DataTypes");
-
         parseObject.put("stringField", "String");
         parseObject.put("doubleField", 1.5);
         parseObject.put("intField", 2);
@@ -113,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 objectId = parseObject.getObjectId();
             } else {
                 objectId = null;
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -146,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 showDataTypes(list);
 
             } else {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -171,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
             if (e == null) {
                 Toast.makeText(this, "Object updated successfully...", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
