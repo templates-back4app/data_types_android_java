@@ -1,34 +1,25 @@
 package com.emre.datatypesjava;
 
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
-import android.content.ClipData;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.parse.DeleteCallback;
-import com.parse.GetCallback;
-import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.SaveCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -36,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
     private View popupInputDialogView;
-    private RecyclerView recyclerView;
     private String objectId;
     private static final String TAG = "MainActivity";
 
@@ -105,17 +95,17 @@ public class MainActivity extends AppCompatActivity {
         listBool.add(false);
         parseObject.put("listBoolField", listBool);
 
-//        progressDialog.show();
-//        parseObject.saveInBackground(e -> {
-//            progressDialog.dismiss();
-//            if (e == null) {
-//                Toast.makeText(this, "Object saved successfully...", Toast.LENGTH_SHORT).show();
-//                objectId = parseObject.getObjectId();
-//            } else {
-//                objectId = null;
-//                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-//            }
-//        });
+        progressDialog.show();
+        parseObject.saveInBackground(e -> {
+            progressDialog.dismiss();
+            if (e == null) {
+                Toast.makeText(this, "Object created successfully...", Toast.LENGTH_SHORT).show();
+                objectId = parseObject.getObjectId();
+            } else {
+                objectId = null;
+                Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void readObjects() {
@@ -146,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 showDataTypes(list);
 
             } else {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -169,9 +159,9 @@ public class MainActivity extends AppCompatActivity {
         parseObject.saveInBackground(e -> {
             progressDialog.dismiss();
             if (e == null) {
-                Toast.makeText(this, "Object saved successfully...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Object updated successfully...", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -190,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
     private void initPopupViewControls(List<Data> list) {
         LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
         popupInputDialogView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
-        recyclerView = popupInputDialogView.findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = popupInputDialogView.findViewById(R.id.recyclerView);
         ItemAdapter adapter = new ItemAdapter(list,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(adapter);
