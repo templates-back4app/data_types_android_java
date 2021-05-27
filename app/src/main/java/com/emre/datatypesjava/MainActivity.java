@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
     private View popupInputDialogView;
-    private RecyclerView recyclerView;
     private String objectId;
     private static final String TAG = "MainActivity";
 
@@ -110,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         parseObject.saveInBackground(e -> {
             progressDialog.dismiss();
             if (e == null) {
-                Toast.makeText(this, "Object saved successfully...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Object created successfully...", Toast.LENGTH_SHORT).show();
                 objectId = parseObject.getObjectId();
             } else {
                 objectId = null;
@@ -170,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         parseObject.saveInBackground(e -> {
             progressDialog.dismiss();
             if (e == null) {
-                Toast.makeText(this, "Object saved successfully...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Object updated successfully...", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -191,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
     private void initPopupViewControls(List<Data> list) {
         LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
         popupInputDialogView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
-        recyclerView = popupInputDialogView.findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = popupInputDialogView.findViewById(R.id.recyclerView);
         ItemAdapter adapter = new ItemAdapter(list,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(adapter);
