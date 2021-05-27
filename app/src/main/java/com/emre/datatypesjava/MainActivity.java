@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void saveDataTypes() throws JSONException {
         ParseObject parseObject = new ParseObject("DataTypes");
-
         parseObject.put("stringField", "String");
         parseObject.put("doubleField", 1.5);
         parseObject.put("intField", 2);
@@ -104,17 +103,17 @@ public class MainActivity extends AppCompatActivity {
         listBool.add(false);
         parseObject.put("listBoolField", listBool);
 
-        progressDialog.show();
-        parseObject.saveInBackground(e -> {
-            progressDialog.dismiss();
-            if (e == null) {
-                Toast.makeText(this, "Object saved successfully...", Toast.LENGTH_SHORT).show();
-                objectId = parseObject.getObjectId();
-            } else {
-                objectId = null;
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
+//        progressDialog.show();
+//        parseObject.saveInBackground(e -> {
+//            progressDialog.dismiss();
+//            if (e == null) {
+//                Toast.makeText(this, "Object saved successfully...", Toast.LENGTH_SHORT).show();
+//                objectId = parseObject.getObjectId();
+//            } else {
+//                objectId = null;
+//                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+//            }
+//        });
     }
 
     private void readObjects() {
