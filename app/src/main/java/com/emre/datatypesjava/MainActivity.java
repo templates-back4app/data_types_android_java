@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.DeleteCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -27,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -119,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
     private void readObjects() {
 
         if (objectId == null) {
-            Toast.makeText(this, "None objectId. Click  Save Data button before.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No objectId. Click  Save Data button before.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -140,20 +142,9 @@ public class MainActivity extends AppCompatActivity {
                 list.add(new Data("List Bool field",object.get("listBoolField").toString()));
                 list.add(new Data("Json Object field",object.get("jsonObject").toString()));
                 list.add(new Data("Json Array field",object.get("jsonArray").toString()));
-                /*String string = "Int list field: " + object.get("listIntField") + "\n\n" +
-                        "String field: " + object.get("stringField") + "\n\n" +
-                        "Double field: " + object.get("doubleField")+ "\n\n" +
-                        "Int field: " + object.get("intField") + "\n\n" +
-                        "String list field: " + object.get("listStringField")+ "\n\n" +
-                        "Date field: " + object.get("dateField") +"\n\n" +
-                        "Bool field: " + object.get("boolField")+"\n\n" +
-                        "List Bool field: " + object.get("listBoolField") +"\n\n" +
-                        "Json Object field: " + object.get("jsonObject") +"\n\n" +
-                        "Json Array field: " + object.get("jsonArray") + "\n\n";*/
 
                 showDataTypes(list);
 
-//                Toast.makeText(this,string,Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -164,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateObject() {
         if (objectId == null) {
-            Toast.makeText(this, "None objectId. Click  Save Data button before.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No objectId. Click  Save Data button before.", Toast.LENGTH_SHORT).show();
             return;
         }
 
